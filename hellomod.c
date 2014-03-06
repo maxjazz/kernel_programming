@@ -7,7 +7,7 @@ MODULE_AUTHOR  ( "Maxim Prokopyev <jazzelastic@gmail.com>" );
 
 static int __init hello_init( void )
 {
-  printk ("Hello world!");
+  printk ( KERN_ALERT "Hello, world!\n");
   return 0;
 }
 
@@ -15,7 +15,7 @@ static int __init hello_init( void )
 
 static void __exit hello_exit( void )
 {
-  printk ("Goodbye worl!");
+  printk ( KERN_ALERT "Goodbye, world!\n");
 }
 
 

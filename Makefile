@@ -1,12 +1,15 @@
-CURRENT = $(shell uname -r)
-KDIR = /lib/modules/$(CURRENT)/build
-PWD = $(shell pwd)
-DEST = /lib/modules/$(CURRENT)/misc
-
 TARGET = hellomod
-obj-m	:= $(TARGET).o
+
+ifneq ($(KERNELRELEASE),)
+    obj-m := $(TARGET).o
+else
+    KERNELDIR ?= /lib/modules/$(shell uname -r)/build
+    PWD := $(shell pwd)
+
 default:
-	$(MAKE) -C $(KDIR) M=$(PWD) modules
+	$(MAKE) -C $(KERNELDIR) M=$(PWD) modules
+
+endif
 
 clean:
 	@rm -f *.o .*.com .*.flags *.mod.c *.order 
